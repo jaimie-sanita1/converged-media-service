@@ -1,0 +1,27 @@
+$kind: http-request
+url: "{{baseUrl}}/api/cart/items"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "productId": "{{productId}}",
+      "quantity": 1
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status is 201', function () {
+          pm.response.to.have.status(201);
+      });
+
+      pm.test('Cart contains added item', function () {
+          const json = pm.response.json();
+          pm.expect(json).to.have.property('cart');
+          pm.expect(json.cart.items).to.be.an('array');
+          pm.expect(json.cart.itemCount).to.be.at.least(1);
+      });
+    language: text/javascript
+order: 1000

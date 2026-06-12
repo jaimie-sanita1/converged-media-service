@@ -1,0 +1,22 @@
+{
+  "name": "postman-playwright-ecommerce-demo",
+  "version": "1.0.0",
+  "description": "Acme Shop — local demo for Postman + Playwright Application Inventory",
+  "private": true,
+  "scripts": {
+    "start": "DEMO_MODE=normal node server/index.js",
+    "start:drift": "DEMO_MODE=drift node server/index.js",
+    "start:silent-error": "DEMO_MODE=silent-error node server/index.js",
+    "test:ui": "playwright test",
+    "test:app": "CI=true postman app test",
+    "test:app:capture": "CI=true postman app test --capture-only"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "postman-cli": "^1.14.0",
+    "postman-playwright": "^1.0.0"
+  }
+}
