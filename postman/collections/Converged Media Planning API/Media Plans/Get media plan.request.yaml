@@ -6,3 +6,32 @@ queryParams:
   planId: plan_45678
 examples: ./.resources/Get media plan.resources/examples
 order: 1000
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      // Happy-path tests for GET /v1/media-plans
+      pm.test("Status code is 200", function () {
+          pm.response.to.have.status(200);
+      });
+
+      pm.test("Response is JSON", function () {
+          pm.response.to.be.json;
+      });
+
+      const json = pm.response.json();
+
+      pm.test("data.id equals planId", function () {
+          pm.expect(json).to.have.nested.property("data.id");
+          pm.expect(json.data.id).to.eql("plan_45678");
+      });
+
+      pm.test("meta.planId is present", function () {
+          pm.expect(json).to.have.nested.property("meta.planId");
+          pm.expect(json.meta.planId).to.be.a("string").and.not.empty;
+      });
+
+      pm.test("meta.planningStatus is present", function () {
+          pm.expect(json).to.have.nested.property("meta.planningStatus");
+          pm.expect(json.meta.planningStatus).to.be.a("string").and.not.empty;
+      });

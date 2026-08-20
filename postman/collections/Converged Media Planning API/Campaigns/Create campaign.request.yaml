@@ -14,3 +14,41 @@ body:
     }
 examples: ./.resources/Create campaign.resources/examples
 order: 2000
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      // Happy-path tests for POST /v1/campaigns
+      pm.test("Status code is 201", function () {
+          pm.response.to.have.status(201);
+      });
+
+      pm.test("Response is JSON", function () {
+          pm.response.to.be.json;
+      });
+
+      const json = pm.response.json();
+
+      pm.test("Response contains data.id", function () {
+          pm.expect(json).to.have.nested.property("data.id");
+          pm.expect(json.data.id).to.be.a("string").and.not.empty;
+      });
+
+      pm.test("data.advertiserId matches request", function () {
+          pm.expect(json.data.advertiserId).to.eql("adv_12345");
+      });
+
+      pm.test("data.name matches request", function () {
+          pm.expect(json.data.name).to.eql("Fall Launch");
+      });
+
+      pm.test("data.budget matches request", function () {
+          pm.expect(json.data.budget).to.eql(150000);
+      });
+
+      pm.test("Response contains success message", function () {
+          const hasMessage =
+              (json.message && json.message.length > 0) ||
+              (json.data && json.data.message && json.data.message.length > 0);
+          pm.expect(hasMessage, "Expected a success message in response").to.be.true;
+      });
