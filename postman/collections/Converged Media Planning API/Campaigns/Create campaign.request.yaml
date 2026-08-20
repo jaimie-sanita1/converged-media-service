@@ -1,0 +1,16 @@
+$kind: http-request
+description: Creates a new media campaign for an advertiser.
+url: "{{baseUrl}}/v1/campaigns"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "advertiserId": "adv_12345",
+      "name": "Fall Launch",
+      "budget": 150000
+    }
+examples: ./.resources/Create campaign.resources/examples
+order: 2000

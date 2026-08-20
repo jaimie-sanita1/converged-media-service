@@ -1,0 +1,19 @@
+$kind: http-example
+request:
+  url: ""
+  method: GET
+response:
+  statusCode: 201
+  statusText: OK
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "id": "cmp_22222",
+        "name": "Fall Launch",
+        "status": "DRAFT",
+        "budget": 150000
+      }
+order: 1000

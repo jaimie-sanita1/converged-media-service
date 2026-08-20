@@ -1,8 +1,0 @@
-name: Acme Shop - Local
-values:
-  - key: baseUrl
-    value: http://localhost:3000
-    enabled: true
-  - key: productId
-    value: prod-001
-    enabled: true

@@ -1,22 +1,30 @@
 {
-  "name": "postman-playwright-ecommerce-demo",
+  "name": "media-planning-service",
   "version": "1.0.0",
-  "description": "Acme Shop — local demo for Postman + Playwright Application Inventory",
-  "private": true,
+  "description": "Express + TypeScript server for the Converged Media Planning API",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "DEMO_MODE=normal node server/index.js",
-    "start:drift": "DEMO_MODE=drift node server/index.js",
-    "start:silent-error": "DEMO_MODE=silent-error node server/index.js",
-    "test:ui": "playwright test",
-    "test:app": "CI=true postman app test",
-    "test:app:capture": "CI=true postman app test --capture-only"
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "lint": "eslint 'src/**/*.ts'",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "express": "^4.21.2"
+    "express": "^4.18.2",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.52.0",
-    "postman-cli": "^1.14.0",
-    "postman-playwright": "^1.0.0"
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.5",
+    "@types/supertest": "^7.2.1",
+    "@types/uuid": "^9.0.7",
+    "@vitest/coverage-v8": "^4.1.11",
+    "supertest": "^7.2.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3",
+    "vitest": "^4.1.11"
   }
 }

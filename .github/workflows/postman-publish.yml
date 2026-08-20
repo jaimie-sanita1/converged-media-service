@@ -1,0 +1,22 @@
+name: Publish changes to Postman
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: 
+  schedule:
+    - cron: '0 12 * * *'
+
+jobs:
+  publish-changes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Postman CLI
+        run: curl -o- "https://dl-cli.pstmn.io/install/unix.sh" | sh
+      - name: Login to Postman
+        run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
+      - name: Push Postman workspace 
+
+          postman workspace push --yes

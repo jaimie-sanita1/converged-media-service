@@ -1,0 +1,8 @@
+$kind: http-request
+description: Returns a media plan and its current planning status.
+url: "{{baseUrl}}/v1/media-plans/?planId=plan_45678"
+method: GET
+queryParams:
+  planId: plan_45678
+examples: ./.resources/Get media plan.resources/examples
+order: 1000

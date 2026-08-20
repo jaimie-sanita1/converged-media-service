@@ -1,0 +1,19 @@
+$kind: http-example
+request:
+  url: ""
+  method: GET
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "id": "plan_45678",
+        "name": "Q4 Converged Plan",
+        "status": "DRAFT",
+        "budget": 175000
+      }
+order: 1000

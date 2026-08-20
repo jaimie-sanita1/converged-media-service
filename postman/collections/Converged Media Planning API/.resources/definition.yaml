@@ -1,0 +1,11 @@
+$kind: collection
+description: A compact demo API for planning converged media campaigns. Designed to produce only a small number of intentional governance findings after Collection-to-Spec.
+variables:
+  baseUrl: https://api.media.example.com
+  token: demo-token
+auth:
+  - id: b84fde1f-1427-46b1-842c-283b72a6d328
+    type: bearer
+    name: bearer auth
+    credentials:
+      token: "{{token}}"

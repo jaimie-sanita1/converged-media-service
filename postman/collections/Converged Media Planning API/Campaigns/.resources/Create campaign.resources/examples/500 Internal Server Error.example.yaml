@@ -1,0 +1,17 @@
+$kind: http-example
+request:
+  url: ""
+  method: GET
+response:
+  statusCode: 500
+  statusText: Internal Server Error
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "code": "INTERNAL_ERROR",
+        "message": "Unable to create campaign"
+      }
+order: 2000

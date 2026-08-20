@@ -1,0 +1,103 @@
+import { Campaign, MediaPlan } from '../types';
+
+export const campaigns: Campaign[] = [
+  {
+    id: 'cmp_001',
+    advertiserId: 'adv_12345',
+    name: 'Fall Launch',
+    budget: 150000,
+    status: 'ACTIVE',
+    createdAt: '2024-09-01T08:00:00.000Z',
+    updatedAt: '2024-09-01T08:00:00.000Z',
+  },
+  {
+    id: 'cmp_002',
+    advertiserId: 'adv_12345',
+    name: 'Holiday Blitz',
+    budget: 300000,
+    status: 'DRAFT',
+    createdAt: '2024-10-15T10:30:00.000Z',
+    updatedAt: '2024-10-15T10:30:00.000Z',
+  },
+  {
+    id: 'cmp_003',
+    advertiserId: 'adv_99999',
+    name: 'Spring Awareness',
+    budget: 75000,
+    status: 'PAUSED',
+    createdAt: '2024-03-01T09:00:00.000Z',
+    updatedAt: '2024-04-01T12:00:00.000Z',
+  },
+];
+
+export const mediaPlans: MediaPlan[] = [
+  {
+    id: 'plan_45678',
+    campaignId: 'cmp_001',
+    advertiserId: 'adv_12345',
+    name: 'Fall Launch – Media Plan v1',
+    planningStatus: 'APPROVED',
+    totalBudget: 150000,
+    lineItems: [
+      {
+        id: 'li_001',
+        channel: 'CTV',
+        format: '30s_spot',
+        budget: 80000,
+        impressions: 4000000,
+        startDate: '2024-10-01',
+        endDate: '2024-10-31',
+      },
+      {
+        id: 'li_002',
+        channel: 'DISPLAY',
+        format: 'banner_300x250',
+        budget: 40000,
+        impressions: 8000000,
+        startDate: '2024-10-01',
+        endDate: '2024-10-31',
+      },
+      {
+        id: 'li_003',
+        channel: 'SOCIAL',
+        format: 'video_15s',
+        budget: 30000,
+        impressions: 3000000,
+        startDate: '2024-10-01',
+        endDate: '2024-10-31',
+      },
+    ],
+    createdAt: '2024-09-05T14:00:00.000Z',
+    updatedAt: '2024-09-20T16:00:00.000Z',
+  },
+  {
+    id: 'plan_99001',
+    campaignId: 'cmp_002',
+    advertiserId: 'adv_12345',
+    name: 'Holiday Blitz – Media Plan v1',
+    planningStatus: 'DRAFT',
+    totalBudget: 300000,
+    lineItems: [
+      {
+        id: 'li_004',
+        channel: 'CTV',
+        format: '30s_spot',
+        budget: 200000,
+        impressions: 10000000,
+        startDate: '2024-11-25',
+        endDate: '2024-12-31',
+      },
+      {
+        id: 'li_005',
+        channel: 'AUDIO',
+        format: 'podcast_30s',
+        budget: 100000,
+        impressions: 5000000,
+        startDate: '2024-11-25',
+        endDate: '2024-12-31',
+      },
+    ],
+    createdAt: '2024-10-16T09:00:00.000Z',
+    updatedAt: '2024-10-16T09:00:00.000Z',
+  },
+];
