@@ -29,11 +29,7 @@ The server starts on **http://localhost:3000** by default.
 | Variable       | Default      | Description                                                    |
 |----------------|--------------|----------------------------------------------------------------|
 | `PORT`         | `3000`       | TCP port the server listens on                                 |
-<<<<<<< HEAD
-| `HOST`         | `{IP_ADDRESS}`    | Bind address                                                   |
-=======
 | `HOST`         | `0.0.0.0`    | Bind address                                                   |
->>>>>>> 17058ce (Generate TypeScript Express server, tests, and CI workflow)
 | `BEARER_TOKEN` | `demo-token` | Expected bearer token – must match `{{token}}` in the collection |
 
 ---
@@ -154,11 +150,7 @@ The in-memory store is pre-loaded with:
 
 ## Project structure
 
-<<<<<<< HEAD
 ```text
-=======
-```
->>>>>>> 17058ce (Generate TypeScript Express server, tests, and CI workflow)
 media-planning-service/
 ├── src/
 │   ├── index.ts              # Entry point – starts the HTTP server
@@ -176,11 +168,8 @@ media-planning-service/
 │       └── mediaPlans.ts     # GET /v1/media-plans
 ├── postman/
 │   └── collections/
-│       └── Converged Media Planning API/   # Source collection YAML files
-<<<<<<< HEAD
+│       └── Converged Media Planning API-1/ # Source collection YAML files
 ├── .github/workflows/ci.yml
-=======
->>>>>>> 17058ce (Generate TypeScript Express server, tests, and CI workflow)
 ├── .env.example
 ├── package.json
 ├── tsconfig.json

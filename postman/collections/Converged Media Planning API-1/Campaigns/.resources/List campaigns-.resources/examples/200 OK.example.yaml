@@ -1,7 +1,10 @@
 $kind: http-example
 request:
-  url: ""
+  url: "{{baseUrl}}/v1/campaigns?advertiserId=adv_12345&status=ACTIVE"
   method: GET
+  queryParams:
+    advertiserId: adv_12345
+    status: ACTIVE
 response:
   statusCode: 200
   statusText: OK

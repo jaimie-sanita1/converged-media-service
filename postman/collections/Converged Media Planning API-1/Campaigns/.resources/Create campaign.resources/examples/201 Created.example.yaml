@@ -1,7 +1,7 @@
 $kind: http-example
 request:
-  url: ""
-  method: GET
+  url: "{{baseUrl}}/v1/campaigns"
+  method: POST
 response:
   statusCode: 201
   statusText: OK

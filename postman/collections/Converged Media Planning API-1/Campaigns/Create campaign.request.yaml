@@ -1,0 +1,46 @@
+$kind: http-request
+description: Creates a new media campaign for an advertiser.
+url: "{{baseUrl}}/v1/campaigns"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "advertiserId": "adv_12345",
+      "name": "Fall Launch",
+      "budget": 150000
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      // Happy-path tests for POST /v1/campaigns
+      pm.test("Status code is 201", function () {
+          pm.response.to.have.status(201);
+      });
+
+      pm.test("Response is JSON", function () {
+          pm.response.to.be.json;
+      });
+
+      const json = pm.response.json();
+
+      pm.test("Response contains campaign id", function () {
+          pm.expect(json.id).to.be.a("string").and.not.empty;
+      });
+
+      pm.test("Response name matches request", function () {
+          pm.expect(json.name).to.eql("Fall Launch");
+      });
+
+      pm.test("Response budget matches request", function () {
+          pm.expect(json.budget).to.eql(150000);
+      });
+
+      pm.test("Response status is DRAFT", function () {
+          pm.expect(json.status).to.eql("DRAFT");
+      });
+    language: text/javascript
+examples: ./.resources/Create campaign.resources/examples
+order: 2000

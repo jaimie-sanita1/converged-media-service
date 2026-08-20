@@ -1,7 +1,7 @@
 $kind: http-example
 request:
-  url: ""
-  method: GET
+  url: "{{baseUrl}}/v1/campaigns"
+  method: POST
 response:
   statusCode: 500
   statusText: Internal Server Error
@@ -12,6 +12,6 @@ response:
     content: |-
       {
         "code": "INTERNAL_ERROR",
-        "message": "Unable to retrieve campaigns"
+        "message": "Unable to create campaign"
       }
 order: 2000

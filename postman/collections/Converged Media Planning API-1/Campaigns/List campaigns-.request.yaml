@@ -1,0 +1,41 @@
+$kind: http-request
+name: List campaigns.
+description: Returns campaigns for an advertiser, optionally filtered by campaign status.
+url: "{{baseUrl}}/v1/campaigns?advertiserId=adv_12345&status=ACTIVE"
+method: GET
+queryParams:
+  advertiserId: adv_12345
+  status: ACTIVE
+scripts:
+  - type: afterResponse
+    code: |-
+      // Happy-path tests for GET /v1/campaigns
+      pm.test("Status code is 200", function () {
+          pm.response.to.have.status(200);
+      });
+
+      pm.test("Response is JSON", function () {
+          pm.response.to.be.json;
+      });
+
+      const json = pm.response.json();
+
+      pm.test("Response contains campaign id", function () {
+          pm.expect(json.id).to.be.a("string").and.not.empty;
+      });
+
+      pm.test("Response advertiserId matches query", function () {
+          pm.expect(json.advertiserId).to.eql("adv_12345");
+      });
+
+      pm.test("Response status is ACTIVE", function () {
+          pm.expect(json.status).to.eql("ACTIVE");
+      });
+
+      pm.test("Response contains campaign name and budget", function () {
+          pm.expect(json.name).to.be.a("string").and.not.empty;
+          pm.expect(json.budget).to.be.a("number");
+      });
+    language: text/javascript
+examples: ./.resources/List campaigns-.resources/examples
+order: 1000
