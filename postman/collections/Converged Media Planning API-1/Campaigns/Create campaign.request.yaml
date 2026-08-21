@@ -1,9 +1,11 @@
 $kind: http-request
+name: Create campaign
 description: Creates a new media campaign for an advertiser.
 url: "{{baseUrl}}/v1/campaigns"
 method: POST
 headers:
   Content-Type: application/json
+  x-mock: "201"
 body:
   type: json
   content: |-
