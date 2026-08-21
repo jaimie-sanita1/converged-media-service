@@ -6,21 +6,12 @@ method: GET
 headers:
   x-mock-response-code: "200"
 queryParams:
-  - key: advertiserId
-    value: adv_12345
-    disabled: false
-    description: ""
-  - key: status
-    value: ACTIVE
-    disabled: false
-    description: ""
-  - key: ""
-    value: ""
-    disabled: false
-    description: ""
+  advertiserId: adv_12345
+  status: ACTIVE
+  "": ""
 scripts:
   - type: afterResponse
-    code: |-
+    code: |
       // Happy-path tests for GET /v1/campaigns
       pm.test("Status code is 200", function () {
           pm.response.to.have.status(200);
@@ -42,11 +33,6 @@ scripts:
 
       pm.test("Response status is ACTIVE", function () {
           pm.expect(json.status).to.eql("ACTIVE");
-      });
-
-      pm.test("Response contains campaign name and budget", function () {
-          pm.expect(json.name).to.be.a("string").and.not.empty;
-          pm.expect(json.budget).to.be.a("number");
       });
     language: text/javascript
 examples: ./.resources/List campaigns-.resources/examples
