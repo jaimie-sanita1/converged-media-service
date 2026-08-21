@@ -6,18 +6,9 @@ method: GET
 headers:
   x-mock-response-code: "200"
 queryParams:
-  - key: advertiserId
-    value: adv_12345
-    disabled: false
-    description: ""
-  - key: status
-    value: ACTIVE
-    disabled: false
-    description: ""
-  - key: ""
-    value: ""
-    disabled: false
-    description: ""
+  advertiserId: adv_12345
+  status: ACTIVE
+  "": ""
 scripts:
   - type: afterResponse
     code: |-
@@ -46,7 +37,7 @@ scripts:
 
       pm.test("Response contains campaign name and budget", function () {
           pm.expect(json.name).to.be.a("string").and.not.empty;
-          pm.expect(json.budget).to.be.a("number");
+          pm.expect(json.budget).to.be.a("integer");
       });
     language: text/javascript
 examples: ./.resources/List campaigns-.resources/examples
