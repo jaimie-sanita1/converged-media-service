@@ -1,11 +1,23 @@
 $kind: http-request
 name: List campaigns.
 description: Returns campaigns for an advertiser, optionally filtered by campaign status.
-url: "{{baseUrl}}/v1/campaigns?advertiserId=adv_12345&status=ACTIVE"
+url: "{{baseUrl}}/v1/campaigns?advertiserId=adv_12345&status=ACTIVE&="
 method: GET
+headers:
+  x-mock-response-code: "200"
 queryParams:
-  advertiserId: adv_12345
-  status: ACTIVE
+  - key: advertiserId
+    value: adv_12345
+    disabled: false
+    description: ""
+  - key: status
+    value: ACTIVE
+    disabled: false
+    description: ""
+  - key: ""
+    value: ""
+    disabled: false
+    description: ""
 scripts:
   - type: afterResponse
     code: |-
