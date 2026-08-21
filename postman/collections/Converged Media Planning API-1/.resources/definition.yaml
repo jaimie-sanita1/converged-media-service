@@ -4,6 +4,13 @@ description: A compact demo API for planning converged media campaigns. Designed
 variables:
   baseUrl: https://api.media.example.com
   token: demo-token
+scripts:
+  - type: http:beforeRequest
+    code: |-
+      pm.test("Response time is less than 800ms", function () {
+          pm.expect(pm.response.responseTime).to.be.below(800);
+      });
+    language: text/javascript
 auth:
   - id: a156c7e8-8454-4049-91f8-ff9e2736820e
     type: bearer
