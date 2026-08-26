@@ -5,6 +5,6 @@ workspace:
 
 cloudResources:
   collections:
-    ../postman/collections/Converged Media Planning API-1: 52538155-d5b68306-dd37-49f4-8367-a53f0914d802
+    ../postman/collections/Converged Media Planning API: 52538155-d5b68306-dd37-49f4-8367-a53f0914d802
   environments:
     ../postman/environments/Mock.environment.yaml: 52538155-2dca6d34-ba0e-414a-b995-1a7e152fa8d9
