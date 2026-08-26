@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: js-converged-media-service
+  namespace: js-converged-media-service
+  labels:
+    app: js-converged-media-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: js-converged-media-service
+  template:
+    metadata:
+      labels:
+        app: js-converged-media-service
+    spec:
+      containers:
+        - name: js-converged-media-service
+          image: 005904641462.dkr.ecr.us-east-2.amazonaws.com/js-converged-media-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: PORT
+              value: "3000"
+            - name: HOST
+              value: "0.0.0.0"
+            - name: BEARER_TOKEN
+              value: "demo-token"
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 3000
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: js-converged-media-service
+  namespace: js-converged-media-service
+  labels:
+    app: js-converged-media-service
+spec:
+  type: ClusterIP
+  selector:
+    app: js-converged-media-service
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3000

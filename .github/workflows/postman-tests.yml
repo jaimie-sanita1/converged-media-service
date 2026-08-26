@@ -13,11 +13,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install Postman CLI
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm ci
+      - name: Start converged-media-service
+        run: npm run build && npm start &
+      - name: Wait for service to be ready
         run: |
-          curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
+          for i in $(seq 1 15); do
+            curl -sf http://localhost:3000/healthz && break
+            echo "Waiting for service... ($i)"
+            sleep 2
+          done
+      - name: Install Postman CLI
+        run: curl -o- "https://dl-cli.pstmn.io/install/unix.sh" | sh
       - name: Login to Postman CLI
         run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
       - name: Run API tests
         run: |
-          postman collection run "52538155-d5b68306-dd37-49f4-8367-a53f0914d802" -e "52538155-2dca6d34-ba0e-414a-b995-1a7e152fa8d9" --report-events
+          postman collection run "52538155-d5b68306-dd37-49f4-8367-a53f0914d802" \
+            -e "52538155-2dca6d34-ba0e-414a-b995-1a7e152fa8d9" \
+            --env-var "baseUrl=http://localhost:3000" \
+            --report-events

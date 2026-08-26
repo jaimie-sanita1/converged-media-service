@@ -1,0 +1,7 @@
+name: Production
+values:
+  - key: baseUrl
+    value: 'https://js-converged-media-service.postmansolutions.com'
+  - key: token
+    value: demo-token
+color: 140
