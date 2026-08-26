@@ -1,0 +1,20 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/v1/campaigns"
+  method: POST
+  body:
+    type: text
+    content: ""
+response:
+  statusCode: 500
+  statusText: Internal Server Error
+  headers:
+    Content-Type: application/json
+  body:
+    type: text
+    content: |-
+      {
+        "code": "INTERNAL_ERROR",
+        "message": "Unable to create campaign"
+      }
+order: 2000

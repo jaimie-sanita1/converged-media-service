@@ -1,10 +1,15 @@
 workspace:
   id: 55bbacda-a0a0-410f-a473-c7f121e0c1a5
-
-# Each entry here maps a local resource to one or more corresponding objects in Postman Cloud
-
 cloudResources:
   collections:
     ../postman/collections/Converged Media Planning API-1: 52538155-d5b68306-dd37-49f4-8367-a53f0914d802
   environments:
     ../postman/environments/Mock.environment.yaml: 52538155-2dca6d34-ba0e-414a-b995-1a7e152fa8d9
+  specs:
+    ../postman/specs/media-service/media-service.yaml: 32d43eb7-99b0-43c8-9272-69f98a51294a
+localResources:
+  specs:
+    - ../postman/specs/media-service/media-service.yaml
+resourceNameMappings:
+  specs:
+    - ../postman/specs/media-service/media-service.yaml: media-service

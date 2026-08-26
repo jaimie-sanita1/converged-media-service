@@ -1,0 +1,22 @@
+$kind: http-example
+request:
+  url: ://{{baseUrl}}/v1/media-plans/?planId=plan_45678
+  method: GET
+  queryParams:
+    planId: plan_45678
+  body:
+    type: text
+    content: ""
+response:
+  statusCode: 500
+  statusText: Internal Server Error
+  headers:
+    Content-Type: application/json
+  body:
+    type: text
+    content: |-
+      {
+        "code": "INTERNAL_ERROR",
+        "message": "Unable to retrieve media plan"
+      }
+order: 2000

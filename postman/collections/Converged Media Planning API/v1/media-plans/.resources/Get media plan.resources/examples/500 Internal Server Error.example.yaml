@@ -1,0 +1,27 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/v1/media-plans/?planId=plan_45678"
+  method: GET
+  headers:
+    - key: x-mock-response-code
+      value: "200"
+      disabled: false
+      description: Instructs the mock server to return a specific HTTP response code.
+    - key: Authorization
+      value: Bearer <token>
+      description: "Added as a part of security scheme: bearer"
+  queryParams:
+    - key: planId
+      value: plan_45678
+      disabled: false
+      description: The unique identifier of the media plan to retrieve.
+  body:
+    type: text
+    content: ""
+response:
+  statusCode: 500
+  statusText: Internal Server Error
+  body:
+    type: text
+    content: ""
+order: 2000
