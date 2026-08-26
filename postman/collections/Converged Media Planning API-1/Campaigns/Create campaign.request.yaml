@@ -27,21 +27,22 @@ scripts:
       });
 
       const json = pm.response.json();
+      const campaign = json.data;
 
       pm.test("Response contains campaign id", function () {
-          pm.expect(json.id).to.be.a("string").and.not.empty;
+          pm.expect(campaign.id).to.be.a("string").and.not.empty;
       });
 
       pm.test("Response name matches request", function () {
-          pm.expect(json.name).to.eql("Fall Launch");
+          pm.expect(campaign.name).to.eql("Fall Launch");
       });
 
       pm.test("Response budget matches request", function () {
-          pm.expect(json.budget).to.eql(150000);
+          pm.expect(campaign.budget).to.eql(150000);
       });
 
       pm.test("Response status is DRAFT", function () {
-          pm.expect(json.status).to.eql("DRAFT");
+          pm.expect(campaign.status).to.eql("DRAFT");
       });
     language: text/javascript
 examples: ./.resources/Create campaign.resources/examples
