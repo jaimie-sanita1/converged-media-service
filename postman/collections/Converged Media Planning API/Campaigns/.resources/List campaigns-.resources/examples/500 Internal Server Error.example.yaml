@@ -1,0 +1,35 @@
+$kind: http-example
+request:
+  url: ://{{baseUrl}}/v1/campaigns?advertiserId=adv_12345&status=ACTIVE
+  method: GET
+  queryParams:
+    advertiserId: adv_12345
+    status: ACTIVE
+  body:
+    type: text
+    content: ""
+response:
+  statusCode: 500
+  statusText: Internal Server Error
+  headers:
+    Content-Type: application/json
+  body:
+    type: text
+    content: |-
+      {
+        "code": "INTERNAL_ERROR",
+        "message": "Unable to retrieve campaigns"
+      }
+    $type: |-
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+order: 2000

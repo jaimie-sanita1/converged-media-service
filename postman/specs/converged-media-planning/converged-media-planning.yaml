@@ -1,0 +1,202 @@
+openapi: 3.0.0
+info:
+  title: converged-media-planning
+  version: 1.0.0
+  description: A compact demo API for planning converged media campaigns. Designed
+    to produce only a small number of intentional governance findings after
+    Collection-to-Spec.
+  contact:
+    name: Jaimie Sanita
+    url: www.test.com
+    email: test@postman.com
+servers:
+  - url: 'https://api.media.example.com'
+paths:
+  /v1/campaigns:
+    get:
+      summary: List campaigns.
+      parameters:
+        - name: advertiserId
+          in: query
+          description: 'The unique identifier of the advertiser to filter campaigns by.'
+          schema:
+            type: string
+          example: adv_12345
+        - name: status
+          in: query
+          description: 'Filter campaigns by their current status (e.g. ACTIVE, DRAFT, PAUSED).'
+          schema:
+            type: string
+          example: ACTIVE
+        - name: x-mock-response-code
+          in: header
+          description: 'Override the response status code returned by the mock server.'
+          schema:
+            type: integer
+          example: 200
+      responses:
+        '200':
+          description: 200 OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  advertiserId:
+                    type: string
+                  status:
+                    type: string
+                  budget:
+                    type: integer
+              example:
+                id: cmp_98765
+                name: Summer Streaming Push
+                advertiserId: adv_12345
+                status: ACTIVE
+                budget: 250000
+        '500':
+          description: 500 Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+              example:
+                code: INTERNAL_ERROR
+                message: Unable to retrieve campaigns
+      tags:
+        - Campaigns
+      description: 'Returns campaigns for an advertiser, optionally filtered by
+        campaign status.'
+    post:
+      summary: Create campaign
+      parameters:
+        - name: x-mock-response-code
+          in: header
+          description: 'Override the response status code returned by the mock server.'
+          schema:
+            type: integer
+          example: 201
+      responses:
+        '201':
+          description: 201 Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  status:
+                    type: string
+                  budget:
+                    type: integer
+              example:
+                id: cmp_22222
+                name: Fall Launch
+                status: DRAFT
+                budget: 150000
+        '500':
+          description: 500 Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+              example:
+                code: INTERNAL_ERROR
+                message: Unable to create campaign
+      tags:
+        - Campaigns
+      description: Creates a new media campaign for an advertiser.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                advertiserId:
+                  type: string
+                name:
+                  type: string
+                budget:
+                  type: integer
+            example:
+              advertiserId: adv_12345
+              name: Fall Launch
+              budget: 150000
+  /v1/media-plans/:
+    get:
+      summary: Get media plan
+      parameters:
+        - name: planId
+          in: query
+          description: 'The unique identifier of the media plan to retrieve.'
+          schema:
+            type: string
+          example: plan_45678
+        - name: x-mock-response-code
+          in: header
+          description: 'Override the response status code returned by the mock server.'
+          schema:
+            type: integer
+          example: 200
+      responses:
+        '200':
+          description: 200 OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  status:
+                    type: string
+                  budget:
+                    type: integer
+              example:
+                id: plan_45678
+                name: Q4 Converged Plan
+                status: DRAFT
+                budget: 175000
+        '500':
+          description: 500 Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+              example:
+                code: INTERNAL_ERROR
+                message: Unable to retrieve media plan
+      tags:
+        - Media Plans
+      description: Returns a media plan and its current planning status.
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+security:
+  - BearerAuth: []
