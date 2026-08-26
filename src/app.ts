@@ -23,9 +23,12 @@ export function createApp(): Application {
   app.use('/v1/media-plans', mediaPlansRouter);
 
   // ── Health check ───────────────────────────────────────────────────────────
-  app.get('/health', (_req: Request, res: Response) => {
+  const healthHandler = (_req: Request, res: Response) => {
     res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
-  });
+  };
+
+  app.get('/health', healthHandler);
+  app.get('/healthz', healthHandler);
 
   // ── 404 handler ────────────────────────────────────────────────────────────
   app.use((_req: Request, res: Response) => {

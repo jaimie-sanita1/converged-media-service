@@ -187,6 +187,50 @@ media-planning-service/
 
 ---
 
+## Docker
+
+1. Build:
+   - `docker build -t converged-media-service:local .`
+2. Run:
+   - `docker run --rm -p 3000:3000 converged-media-service:local`
+
+## EKS deployment
+
+Manifests live in `manifests/` and follow the same pattern as cart-service:
+
+```bash
+kubectl apply -f manifests/namespace.yaml
+kubectl apply -f manifests/deploy.yaml
+kubectl apply -f manifests/ingress.yaml
+```
+
+The service is exposed at **https://js-converged-media-service.postmansolutions.com**.
+
+### Build and push to ECR
+
+```bash
+aws ecr get-login-password --region us-east-2 \
+  | docker login --username AWS --password-stdin 005904641462.dkr.ecr.us-east-2.amazonaws.com
+
+docker build -t js-converged-media-service .
+docker tag js-converged-media-service:latest \
+  005904641462.dkr.ecr.us-east-2.amazonaws.com/js-converged-media-service:latest
+docker push 005904641462.dkr.ecr.us-east-2.amazonaws.com/js-converged-media-service:latest
+```
+
+### Postman Insights (sidecar)
+
+After the deployment is running, inject the Insights Agent sidecar:
+
+```bash
+kubectl get -n js-converged-media-service deployment/js-converged-media-service -o yaml \
+| POSTMAN_API_KEY=<your-api-key> postman-insights-agent kube inject \
+  --project <projectId> --repro-mode -s=true -f - \
+| kubectl apply -f -
+```
+
+Verify with `kubectl get pods -n js-converged-media-service` (expect `2/2` READY after injection).
+
 ## Testing and CI
 
 Run the automated checks locally:
@@ -196,4 +240,4 @@ npm test
 npm run build
 ```
 
-The GitHub Actions workflow at `.github/workflows/ci.yml` runs on pull requests and on pushes to `main` and `master`. It installs dependencies with `npm ci`, then runs the TypeScript build and test suite.
+The GitHub Actions workflow at `.github/workflows/postman-tests.yml` starts the service locally and runs the Postman collection against it.
