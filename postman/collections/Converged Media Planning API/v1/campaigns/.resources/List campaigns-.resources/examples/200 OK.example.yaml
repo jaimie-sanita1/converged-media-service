@@ -1,0 +1,31 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/v1/campaigns?advertiserId=adv_12345&status=ACTIVE"
+  method: GET
+  headers:
+    - key: x-mock-response-code
+      value: "200"
+      disabled: false
+      description: Instructs the mock server to return a specific HTTP response code.
+    - key: Authorization
+      value: Bearer <token>
+      description: "Added as a part of security scheme: bearer"
+  queryParams:
+    - key: advertiserId
+      value: adv_12345
+      disabled: false
+      description: The unique identifier of the advertiser whose campaigns should be returned.
+    - key: status
+      value: ACTIVE
+      disabled: false
+      description: Filters campaigns by their current status (e.g. ACTIVE, PAUSED, COMPLETED).
+  body:
+    type: text
+    content: ""
+response:
+  statusCode: 200
+  statusText: OK
+  body:
+    type: text
+    content: ""
+order: 1000

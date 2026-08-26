@@ -1,0 +1,28 @@
+$kind: http-request
+name: List campaigns.
+description: Returns campaigns for an advertiser, optionally filtered by campaign status.
+url: "{{baseUrl}}/v1/campaigns?advertiserId=adv_12345&status=ACTIVE"
+method: GET
+headers:
+  - key: x-mock-response-code
+    value: "200"
+    disabled: false
+    description: Instructs the mock server to return a specific HTTP response code.
+    $type: integer
+queryParams:
+  - key: advertiserId
+    value: adv_12345
+    disabled: false
+    description: The unique identifier of the advertiser whose campaigns should be returned.
+    $type: string
+  - key: status
+    value: ACTIVE
+    disabled: false
+    description: Filters campaigns by their current status (e.g. ACTIVE, PAUSED, COMPLETED).
+    $type: string
+body:
+  type: text
+  content: ""
+settings: {}
+examples: ./.resources/List campaigns-.resources/examples
+order: 1000

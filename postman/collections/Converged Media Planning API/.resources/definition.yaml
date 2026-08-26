@@ -1,0 +1,16 @@
+$kind: collection
+description: |-
+  A compact demo API for planning converged media campaigns. Designed to produce only a small number of intentional governance findings after Collection-to-Spec.
+
+  Contact Support:
+   Name: Jaimie Sanita
+   Email: test@postman.com
+variables:
+  baseUrl: https://api.media.example.com
+  token: demo-token
+auth:
+  - id: 7e776e78-47a9-4141-866d-9fa6c5a76124
+    type: bearer
+    name: bearer auth
+    credentials:
+      token: "{{token}}"
