@@ -82,7 +82,7 @@ paths:
               advertiserId: adv_12345
               name: Fall Launch
               budget: 150000
-  /v1/media-plans/:
+  /v1/media-plans:
     get:
       summary: Get media plan
       parameters:
