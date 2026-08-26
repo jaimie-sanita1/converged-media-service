@@ -20,21 +20,22 @@ scripts:
       });
 
       const json = pm.response.json();
+      const plan = json.data;
 
       pm.test("Response id equals planId", function () {
-          pm.expect(json.id).to.eql("plan_45678");
+          pm.expect(plan.id).to.eql("plan_45678");
       });
 
       pm.test("Response contains media plan name", function () {
-          pm.expect(json.name).to.be.a("string").and.not.empty;
+          pm.expect(plan.name).to.be.a("string").and.not.empty;
       });
 
-      pm.test("Response status is DRAFT", function () {
-          pm.expect(json.status).to.eql("DRAFT");
+      pm.test("Response planningStatus is APPROVED", function () {
+          pm.expect(plan.planningStatus).to.eql("APPROVED");
       });
 
-      pm.test("Response budget is present", function () {
-          pm.expect(json.budget).to.be.a("number");
+      pm.test("Response totalBudget is present", function () {
+          pm.expect(plan.totalBudget).to.be.a("number");
       });
     language: text/javascript
 examples: ./.resources/Get media plan.resources/examples
