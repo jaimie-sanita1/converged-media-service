@@ -1,20 +1,17 @@
 $kind: http-example
 request:
-  url: ://{{baseUrl}}/v1/campaigns?advertiserId=adv_12345&status=ACTIVE
+  url: "{{baseUrl}}/v1/campaigns?advertiserId=adv_12345&status=ACTIVE"
   method: GET
   queryParams:
     advertiserId: adv_12345
     status: ACTIVE
-  body:
-    type: text
-    content: ""
 response:
   statusCode: 200
   statusText: OK
   headers:
     Content-Type: application/json
   body:
-    type: text
+    type: json
     content: |-
       {
         "id": "cmp_98765",

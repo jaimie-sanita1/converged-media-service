@@ -1,15 +1,11 @@
 $kind: http-request
+name: Create campaign
 description: Creates a new media campaign for an advertiser.
 url: "{{baseUrl}}/v1/campaigns"
 method: POST
 headers:
-  - key: Content-Type
-    value: application/json
-    description: ""
-  - key: x-mock-response-code
-    value: "201"
-    description: ""
-    $type: integer
+  Content-Type: application/json
+  x-mock-response-code: "201"
 body:
   type: json
   content: |-
@@ -17,21 +13,6 @@ body:
       "advertiserId": "adv_12345",
       "name": "Fall Launch",
       "budget": 150000
-    }
-  $type: |-
-    {
-      "type": "object",
-      "properties": {
-        "advertiserId": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "budget": {
-          "type": "integer"
-        }
-      }
     }
 scripts:
   - type: afterResponse

@@ -2,16 +2,13 @@ $kind: http-example
 request:
   url: "{{baseUrl}}/v1/campaigns"
   method: POST
-  body:
-    type: text
-    content: ""
 response:
   statusCode: 201
   statusText: OK
   headers:
     Content-Type: application/json
   body:
-    type: text
+    type: json
     content: |-
       {
         "id": "cmp_22222",
