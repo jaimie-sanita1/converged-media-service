@@ -1,0 +1,103 @@
+openapi: 3.0.0
+info:
+  title: test-spec
+  version: 1.0.0
+  description: A compact demo API for planning converged media campaigns. Designed
+    to produce only a small number of intentional governance findings after
+    Collection-to-Spec.
+servers:
+  - url: 'https://api.media.example.com'
+paths:
+  /v1/campaigns:
+    get:
+      summary: List campaigns.
+      parameters:
+        - name: advertiserId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: adv_12345
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ACTIVE
+        - name: x-mock-response-code
+          in: header
+          required: false
+          schema:
+            type: integer
+          example: 200
+      responses:
+        '200':
+          description: 200 OK
+        '500':
+          description: 500 Internal Server Error
+      tags:
+        - Campaigns
+      description: 'Returns campaigns for an advertiser, optionally filtered by
+        campaign status.'
+    post:
+      summary: Create campaign
+      parameters:
+        - name: x-mock-response-code
+          in: header
+          required: false
+          schema:
+            type: integer
+          example: 201
+      responses:
+        '201':
+          description: 201 Created
+        '500':
+          description: 500 Internal Server Error
+      tags:
+        - Campaigns
+      description: Creates a new media campaign for an advertiser.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                advertiserId:
+                  type: string
+                name:
+                  type: string
+                budget:
+                  type: integer
+            example:
+              advertiserId: adv_12345
+              name: Fall Launch
+              budget: 150000
+  /v1/media-plans:
+    get:
+      summary: Get media plan
+      parameters:
+        - name: planId
+          in: query
+          schema:
+            type: string
+          example: plan_45678
+        - name: x-mock-response-code
+          in: header
+          schema:
+            type: integer
+          example: 200
+      responses:
+        '200':
+          description: 200 OK
+        '500':
+          description: 500 Internal Server Error
+      tags:
+        - Media Plans
+      description: Returns a media plan and its current planning status.
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+security:
+  - BearerAuth: []

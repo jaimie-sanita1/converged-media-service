@@ -1,0 +1,24 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/v1/media-plans?planId=plan_45678"
+  method: GET
+  headers:
+    - key: x-mock-response-code
+      value: "200"
+      disabled: false
+      description: ""
+    - key: Authorization
+      value: Bearer <token>
+      description: "Added as a part of security scheme: bearer"
+  queryParams:
+    planId: plan_45678
+  body:
+    type: text
+    content: ""
+response:
+  statusCode: 200
+  statusText: OK
+  body:
+    type: text
+    content: ""
+order: 1000
