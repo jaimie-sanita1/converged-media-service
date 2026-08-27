@@ -1,11 +1,15 @@
 $kind: collection
-name: Converged Media Planning API
-description: A compact demo API for planning converged media campaigns. Designed to produce only a small number of intentional governance findings after Collection-to-Spec.
+description: |-
+  A compact demo API for planning converged media campaigns. Designed to produce only a small number of intentional governance findings after Collection-to-Spec.
+
+  Contact Support:
+   Name: Jaimie Sanita
+   Email: test@postman.com
 variables:
   baseUrl: https://api.media.example.com
   token: demo-token
 auth:
-  - id: a156c7e8-8454-4049-91f8-ff9e2736820e
+  - id: 8a40ed72-629d-4033-8284-39ac38d4b810
     type: bearer
     name: bearer auth
     credentials:

@@ -2,12 +2,29 @@ $kind: http-example
 request:
   url: "{{baseUrl}}/v1/campaigns"
   method: POST
+  headers:
+    - key: x-mock-response-code
+      value: "201"
+      disabled: false
+      description: ""
+    - key: Content-Type
+      value: application/json
+    - key: Accept
+      value: application/json
+    - key: Authorization
+      value: Bearer <token>
+      description: "Added as a part of security scheme: bearer"
   body:
-    type: text
-    content: ""
+    type: json
+    content: |-
+      {
+        "advertiserId": "adv_12345",
+        "name": "Fall Launch",
+        "budget": 150000
+      }
 response:
   statusCode: 201
-  statusText: OK
+  statusText: Created
   headers:
     Content-Type: application/json
   body:

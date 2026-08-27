@@ -1,10 +1,19 @@
 $kind: http-example
 request:
-  url: ://{{baseUrl}}/v1/campaigns?advertiserId=adv_12345&status=ACTIVE
+  url: "{{baseUrl}}/v1/media-plans?planId=plan_45678"
   method: GET
+  headers:
+    - key: x-mock-response-code
+      value: "200"
+      disabled: false
+      description: ""
+    - key: Accept
+      value: application/json
+    - key: Authorization
+      value: Bearer <token>
+      description: "Added as a part of security scheme: bearer"
   queryParams:
-    advertiserId: adv_12345
-    status: ACTIVE
+    planId: plan_45678
   body:
     type: text
     content: ""
@@ -18,7 +27,7 @@ response:
     content: |-
       {
         "code": "INTERNAL_ERROR",
-        "message": "Unable to retrieve campaigns"
+        "message": "Unable to retrieve media plan"
       }
     $type: |-
       {
