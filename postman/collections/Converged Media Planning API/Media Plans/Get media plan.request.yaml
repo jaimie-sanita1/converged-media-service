@@ -1,12 +1,14 @@
 $kind: http-request
-name: Get media plan
 description: Returns a media plan and its current planning status.
-url: "{{baseUrl}}/v1/media-plans/?planId=plan_45678"
+url: ://{{baseUrl}}/v1/media-plans/?planId=plan_45678
 method: GET
 headers:
   x-mock-response-code: "200"
 queryParams:
   planId: plan_45678
+body:
+  type: text
+  content: ""
 scripts:
   - type: afterResponse
     code: |-

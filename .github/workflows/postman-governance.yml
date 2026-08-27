@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 env:
-  POSTMAN_SPEC_ID: "" # Add generated Spec ID during demo
+  POSTMAN_SPEC_ID: "0229496a-ccad-41fe-b1c5-1851bfac5f23" 
   POSTMAN_WORKSPACE_ID: "55bbacda-a0a0-410f-a473-c7f121e0c1a5"
 
 jobs:
